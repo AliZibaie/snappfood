@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Repository\UserRepositoryInterface;
 use Illuminate\Http\Request;
 
-class SellerController extends Controller
+class UserController extends Controller
 {
     private UserRepositoryInterface $userRepository;
 
@@ -14,8 +13,10 @@ class SellerController extends Controller
     {
         $this->userRepository = $userRepository;
     }
+
     public function test()
     {
         dd($this->userRepository->first());
     }
+
 }

@@ -3,6 +3,8 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ManageSellerController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\SellerController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,3 +37,4 @@ Route::group(['middleware' => ['can:delete seller']], function () {
     Route::get('home',[PageController::class, 'home']);
 });
 Route::get('admin/panel/sellers', [ManageSellerController::class, 'index']);
+Route::get('/test',[UserController::class, 'test']);

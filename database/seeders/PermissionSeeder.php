@@ -43,12 +43,31 @@ class PermissionSeeder extends Seeder
         $seller->givePermissionTo('add banner');
         $seller->givePermissionTo('add restaurant');
         $seller->givePermissionTo('define food');
-        $user = User::factory()->create([
-            'name' => 'Example User',
-            'email' => 'test@example.com',
+        $superAdmin = User::factory()->create([
+            'name' => 'علی زیبایی',
+            'email' => 'alizibaie1380@gmail.com',
             'password' => Hash::make(123456),
         ]);
-        $user->assignRole($admin);
+        $seller1 =  User::factory()->create([
+            'name' => 'فروشنده 1',
+            'email' => 'test@gmail.com',
+            'password' => Hash::make(123456),
+        ]);
+        $seller2 =  User::factory()->create([
+            'name' => 'فروشنده2',
+            'email' => 'test2@gmail.com',
+            'password' => Hash::make(123456),
+        ]);
+        $seller3 =  User::factory()->create([
+            'name' => '3',
+            'email' => 'test3@gmail.com',
+            'password' => Hash::make(123456),
+        ]);
+        $superAdmin->assignRole($admin);
+
+        $seller1->assignRole($seller);
+        $seller2->assignRole($seller);
+        $seller3->assignRole($seller);
     }
 
 }
