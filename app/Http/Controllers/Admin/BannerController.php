@@ -58,4 +58,19 @@ class BannerController extends Controller
         $banners = Banner::all();
         return view('panel.admin.banners.index', compact('banners'));
     }
+    public function set(Banner $banner)
+    {
+        dd($banner);
+    }
+
+    public function destroy(Banner $banner)
+    {
+        try {
+            $banner->image()->delete();
+            $banner->delete();
+            return redirect('panel/admin/banners')->with('success', 'بنر مورد نظر با موفقیت حذف شد.');
+        }catch (Exception $e){
+            return redirect('panel/admin/banners', 500)->with('success', 'حذف بنر با خطا مواجه شد.');
+        }
+    }
 }
