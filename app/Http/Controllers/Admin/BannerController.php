@@ -30,4 +30,25 @@ class BannerController extends Controller
             return redirect('panel/admin/banners', 500)->with('success', 'ایجاد بنر با خطا مواجه شد.');
         }
     }
+    public function edit(Banner $banner)
+    {
+        return view('panel.admin.banners.edit', compact('banner'));
+    }
+
+    public function update(UpdateBannerRequest $request, Banner  $banner)
+    {
+        try {
+            $image = $request->file('image');
+            $imageFileName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+            $imagePath = $image->storeAs('public/images/banners', $imageFileName);
+            $oldImagePath = str_replace('storage/', '', $banner->image->url);
+            Storage::delete('public/' . $oldImagePath);
+            $banner->image()->delete();
+            $banner->image()->create(['url' => 'storage/images/banners/'.$imageFileName]);
+            $banner->update($request->validated());
+            return redirect('panel/admin/banners')->with('success', 'بنر با موفقیت بروزرسانی شد.');
+        } catch (Exception $e) {
+            return redirect('panel/admin/banners')->with('fail', 'خطا در به‌روزرسانی بنر');
+        }
+    }
 }
