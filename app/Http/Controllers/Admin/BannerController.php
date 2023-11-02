@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Banner\StoreBannerRequest;
+use App\Http\Requests\Banner\UpdateBannerRequest;
 use App\Models\Banner;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class BannerController extends Controller
 {
@@ -50,5 +52,10 @@ class BannerController extends Controller
         } catch (Exception $e) {
             return redirect('panel/admin/banners')->with('fail', 'خطا در به‌روزرسانی بنر');
         }
+    }
+    public function index()
+    {
+        $banners = Banner::all();
+        return view('panel.admin.banners.index', compact('banners'));
     }
 }
