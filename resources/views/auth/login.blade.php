@@ -20,7 +20,7 @@
                     @csrf
                     <div class="pb-2 pt-4">
                         <label for="email"></label>
-                        <input type="email" name="email" id="email" placeholder="آدرس ایمیل" class="block w-full p-4 text-lg rounded-sm bg-gray-7007  text-right" style="background-color: #282828">
+                        <input type="email" name="email" id="email" placeholder="آدرس ایمیل" class="block w-full p-4 text-lg rounded-sm bg-gray-7007  text-right" style="background-color: #282828" value="{{old('email')}}">
                         @error('email')
                         <p class="text-red-800 text-xl">{{$message}}</p>
                         @enderror

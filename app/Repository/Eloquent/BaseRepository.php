@@ -1,8 +1,11 @@
 <?php
 namespace App\Repository\Eloquent;
 
+use App\Models\User;
 use App\Repository\EloquentRepositoryInterface;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Query\Builder;
+
 
 class BaseRepository implements EloquentRepositoryInterface
 {
@@ -29,6 +32,12 @@ class BaseRepository implements EloquentRepositoryInterface
     public function create(array $attributes): Model
     {
         return $this->model->create($attributes);
+    }
+
+    public function where($column, $operator = null, $value = null, $boolean = 'and')
+    {
+         $this->model::query()->where($column, $operator = null, $value = null, $boolean = 'and');
+        return $this->model;
     }
 
     public function first(): Model

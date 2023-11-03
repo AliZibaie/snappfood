@@ -19,7 +19,8 @@ class AuthController extends Controller
     public function login(LoginRequest $request)
     {
         if (Auth::attempt($request->validated())){
-            $user = $this->userRepository->where('email', $request->validated()['email'])->first();
+            $user = User::where('email', $request->validated()['email'])->first();
+//            $user = $this->userRepository->where('email', $request->validated()['email'])->first();
             Auth::login($user, true);
             return redirect('dashboard');
         }

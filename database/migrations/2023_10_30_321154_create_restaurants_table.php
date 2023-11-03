@@ -16,9 +16,11 @@ return new class extends Migration
             $table->string('name');
             $table->text('address');
             $table->string('phone');
-            $table->integer('account_number');
+            $table->bigInteger('account_number');
+            $table->bigInteger('sending_price');
             $table->foreignId('restaurant_category_id')->constrained();
             $table->foreignId('user_id')->constrained();
+            $table->tinyInteger('status')->default(1);
             $table->time('open_time');
             $table->time('close_time');
             $table->timestamps();

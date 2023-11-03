@@ -20,34 +20,65 @@ class PermissionSeeder extends Seeder
     public function run(): void
     {
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
-        Permission::create(['name' => 'accept admin']);
-        Permission::create(['name' => 'add food category']);
-        Permission::create(['name' => 'delete food category']);
-        Permission::create(['name' => 'add restaurant category']);
-        Permission::create(['name' => 'delete restaurant category']);
-        Permission::create(['name' => 'delete seller']);
-        Permission::create(['name' => 'define coupon']);
-        Permission::create(['name' => 'add coupon']);
-        Permission::create(['name' => 'define banner']);
-        Permission::create(['name' => 'add banner']);
-        Permission::create(['name' => 'view user']);
-        Permission::create(['name' => 'view users']);
-        Permission::create(['name' => 'view sellers']);
-        Permission::create(['name' => 'add restaurant']);
-        Permission::create(['name' => 'define food']);
+
+        Permission::create(['name' => 'view banners']);
+        Permission::create(['name' => 'create banner']);
+        Permission::create(['name' => 'delete banners']);
+        Permission::create(['name' => 'edit banners']);
+
+        Permission::create(['name' => 'view restaurant categories']);
+        Permission::create(['name' => 'create restaurant category']);
+        Permission::create(['name' => 'delete restaurant categories']);
+        Permission::create(['name' => 'edit restaurant categories']);
+
+        Permission::create(['name' => 'view food categories']);
+        Permission::create(['name' => 'create food category']);
+        Permission::create(['name' => 'delete food categories']);
+        Permission::create(['name' => 'edit food categories']);
+
+        Permission::create(['name' => 'view discount categories']);
+        Permission::create(['name' => 'create discount category']);
+        Permission::create(['name' => 'delete discount categories']);
+        Permission::create(['name' => 'edit discount categories']);
+
+        Permission::create(['name' => 'view comments']);
+        Permission::create(['name' => 'create comment']);
+        Permission::create(['name' => 'delete comments']);
+        Permission::create(['name' => 'edit comments']);
+
+        Permission::create(['name' => 'view foods']);
+        Permission::create(['name' => 'create food']);
+        Permission::create(['name' => 'delete foods']);
+        Permission::create(['name' => 'edit foods']);
+
+        Permission::create(['name' => 'view restaurants']);
+        Permission::create(['name' => 'create restaurant']);
+        Permission::create(['name' => 'delete restaurants']);
+        Permission::create(['name' => 'edit restaurants']);
+
+        Permission::create(['name' => 'view orders']);
+        Permission::create(['name' => 'create order']);
+        Permission::create(['name' => 'delete orders']);
+        Permission::create(['name' => 'edit orders']);
+
+        Permission::create(['name' => 'view food parties']);
+        Permission::create(['name' => 'create view food party']);
+        Permission::create(['name' => 'delete food parties']);
+        Permission::create(['name' => 'edit food parties']);
+
+
         foreach (enum::getValues() as $role) {
             $$role = Role::create(['name'=>$role]);
         }
         $admin->givePermissionTo(Permission::all());
-        $seller->givePermissionTo('add coupon');
-        $seller->givePermissionTo('add banner');
-        $seller->givePermissionTo('add restaurant');
-        $seller->givePermissionTo('define food');
+
+
         $superAdmin = User::factory()->create([
             'name' => 'علی زیبایی',
             'email' => 'alizibaie1380@gmail.com',
             'password' => Hash::make(123456),
         ]);
+
         $seller1 =  User::factory()->create([
             'name' => 'فروشنده 1',
             'email' => 'test@gmail.com',
@@ -59,7 +90,7 @@ class PermissionSeeder extends Seeder
             'password' => Hash::make(123456),
         ]);
         $seller3 =  User::factory()->create([
-            'name' => '3',
+            'name' => 'فروشنده2',
             'email' => 'test3@gmail.com',
             'password' => Hash::make(123456),
         ]);
