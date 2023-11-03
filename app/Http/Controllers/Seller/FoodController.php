@@ -18,9 +18,23 @@ use PHPUnit\Exception;
 
 class FoodController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $foods = Auth::user()->foods()->paginate(3);
+        $user = Auth::user();
+        $foodsQuery = $user->foods()->whereBetween('food.created_at', [now()->startOfWeek(), now()->endOfWeek()]);
+
+        if ($request->has('name') ) {
+            $name = $request->input('name');
+            $foodsQuery->where('food.name', 'like', "%$name%");
+        }
+
+        if ($request->input('category')) {
+            $category = $request->input('category');
+            $foodsQuery->whereHas('foodCategory', function ($query) use ($category) {
+                $query->where('food_categories.food_type', $category);
+            });
+        }
+        $foods = $foodsQuery->paginate(3);
         return view('panel.seller.foods.index', compact('foods'));
     }
 

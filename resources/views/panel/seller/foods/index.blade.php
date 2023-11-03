@@ -11,6 +11,21 @@
             افزودن
         </a>
     </div>
+    <div class="flex justify-center">
+        <form method="get" action="{{ route('foods.index') }}">
+            <div class="mb-4">
+                <label for="name" class="block text-sm font-medium text-gray-600">نام غذا</label>
+                <input type="text" name="name" id="name" class="w-full p-2 border rounded-md" value="{{ request('name') }}">
+            </div>
+            <div class="mb-4">
+                <label for="category" class="block text-sm font-medium text-gray-600">دسته بندی غذا</label>
+                <input type="text" name="category" id="category" class="w-full p-2 border rounded-md" value="{{ request('category') }}">
+            </div>
+            <div>
+                <button type="submit" class="px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700">اعمال فیلتر</button>
+            </div>
+        </form>
+    </div>
     <div class=" mb-20 relative overflow-x-auto shadow-md sm:rounded-lg mt-4">
         <p class="text-center text-xl">پنل مدیریت دسته بندی غذا ها</p>
         <table class="w-3/4 mt-4 mx-auto text-sm text-left text-gray-500 dark:text-gray-400">
@@ -81,4 +96,5 @@
 
 
     </div>
+
 @endsection
