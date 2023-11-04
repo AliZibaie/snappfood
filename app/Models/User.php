@@ -66,5 +66,9 @@ class User extends Authenticatable
     {
         return $this->hasManyThrough(Food::class, Restaurant::class);
     }
+    public function address(): MorphOne
+    {
+        return $this->morphOne(Address::class, 'addressable');
+    }
 
 }

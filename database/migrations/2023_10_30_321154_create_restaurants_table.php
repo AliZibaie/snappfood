@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('address');
+            $table->float('score')->default(0);
             $table->string('phone');
             $table->bigInteger('account_number');
             $table->bigInteger('sending_price');

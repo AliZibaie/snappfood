@@ -28,6 +28,10 @@ class Restaurant extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function address(): MorphOne
+    {
+        return $this->morphOne(Address::class, 'addressable');
+    }
     protected $fillable = [
         'name',
         'address',
