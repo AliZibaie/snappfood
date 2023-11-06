@@ -17,5 +17,10 @@ class AddressController extends Controller
         return new AddressCollection(Address::all());
     }
 
+    public function show(Address $address)
+    {
+        return new AddressResource($address);
+    }
+
 
 }
