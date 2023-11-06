@@ -22,5 +22,14 @@ class AddressController extends Controller
         return new AddressResource($address);
     }
 
-
+    public function store(StoreAddressRequest $request)
+    {
+        try
+        {
+            Address::query()->create($request->input());
+            return ['msg'=>'آدرس شما با موفقیت افزوده شد.'];
+        }catch (Exception $e){
+            return ['msg'=>'خظا در افزودن آدرس'];
+        }
+    }
 }
