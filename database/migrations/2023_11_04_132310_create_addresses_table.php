@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('addresses', function (Blueprint $table) {
-            $table->morphs('addressable');
+            $table->id();
+            $table->nullableMorphs('addressable');
             $table->string('title');
             $table->text('address');
             $table->float('longitude');

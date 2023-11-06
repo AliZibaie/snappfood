@@ -13,4 +13,17 @@ class Address extends Model
     {
         return $this->morphTo();
     }
+    protected $visible = [
+        'id',
+        'title',
+        'address',
+        'latitude',
+        'longitude',
+    ];
+    protected $fillable = [
+        'title',
+        'address',
+        'latitude',
+        'longitude',
+    ];
 }
