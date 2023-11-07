@@ -21,6 +21,6 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        View::share('banner', Banner::first() ?? null);
+//        View::share('banner', Banner::query()->firstOrFail());
     }
 }
