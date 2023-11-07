@@ -57,6 +57,17 @@ class AuthController extends Controller
 
     public function logout()
     {
-
+        try {
+            Auth::user()->tokens()->delete();
+            return response()->json([
+                'status' => true,
+                'message' => 'شما باموفقیت خارج شدید.',
+            ]);
+        }catch (\Throwable $exception){
+            return response()->json([
+                'status' => false,
+                'message' => $exception->getMessage()
+            ], 500);
+        }
     }
 }
