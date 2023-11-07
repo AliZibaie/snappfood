@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api\auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\api\auth\LoginRequest;
 use App\Http\Requests\api\auth\RegisterRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,9 +35,24 @@ class AuthController extends Controller
         }
     }
 
-    public function register()
+    public function register(RegisterRequest $request)
     {
-
+        try {
+            $user = User::create($request->input());
+            Auth::login($user);
+                $token = Auth::user()->createToken('Personal Access Token')->plainTextToken;
+                return response()->json([
+                    'status' => true,
+                    'user'=>Auth::user(),
+                    'token'=>$token,
+                    'message'=>'شما ثبت نام شدید!'
+                ]);
+        }catch (\Throwable $exception){
+            return response()->json([
+                'status' => false,
+                'message' => $exception->getMessage()
+            ], 500);
+        }
     }
 
     public function logout()
