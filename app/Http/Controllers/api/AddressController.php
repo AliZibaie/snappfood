@@ -7,6 +7,7 @@ use App\Http\Requests\api\address\StoreAddressRequest;
 use App\Http\Resources\AddressCollection;
 use App\Http\Resources\AddressResource;
 use App\Models\Address;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use Mockery\Exception;
 
@@ -27,9 +28,15 @@ class AddressController extends Controller
         try
         {
             Address::query()->create($request->input());
-            return ['msg'=>'آدرس شما با موفقیت افزوده شد.'];
+            return response()->json([
+                'status'=>true,
+                'message'=>'آدرس شما با موفقیت افزوده شد.',
+            ]);
         }catch (Exception $e){
-            return ['msg'=>'خظا در افزودن آدرس'];
+            return response()->json([
+                'status'=>false,
+                'message'=>'خظا در افزودن آدرس',
+            ], 500);
         }
     }
 }
