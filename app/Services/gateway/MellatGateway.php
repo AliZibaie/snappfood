@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\gateway;
 
 use App\contracts\PaymentGatewayInterface;
 
-class SepGateway implements  PaymentGatewayInterface
+class MellatGateway implements PaymentGatewayInterface
 {
     public function pay(int $amount)
     {

@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('addresses', AddressController::class);
+    Route::apiResource('addresses', AddressController::class);
     Route::post('logout', [AuthController::class,'logout'] );
 });
 

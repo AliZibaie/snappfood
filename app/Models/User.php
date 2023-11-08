@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -67,9 +68,9 @@ class User extends Authenticatable
     {
         return $this->hasManyThrough(Food::class, Restaurant::class);
     }
-    public function address(): MorphOne
+    public function addresses(): MorphMany
     {
-        return $this->morphOne(Address::class, 'addressable');
+        return $this->morphMany(Address::class, 'addressable');
     }
 
 }

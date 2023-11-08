@@ -16,6 +16,7 @@ return new class extends Migration
             $table->nullableMorphs('addressable');
             $table->string('title');
             $table->text('address');
+            $table->boolean('is_default')->default(0);
             $table->float('longitude');
             $table->float('latitude');
             $table->timestamps();
