@@ -36,6 +36,11 @@ class Restaurant extends Model
     {
         return $this->hasMany(Schedule::class);
     }
+
+    public function foods(): HasMany
+    {
+        return $this->hasMany(Food::class);
+    }
     protected $fillable = [
         'name',
         'phone',
