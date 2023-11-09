@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\CommentController as AdminComment;
 use App\Http\Controllers\AssignDiscountController;
+use App\Http\Controllers\Seller\AddressController;
 use App\Http\Controllers\Seller\CommentController as SellerComment;
 use App\Http\Controllers\Admin\DiscountController;
 use App\Http\Controllers\Admin\FoodCategoryController;
@@ -61,6 +62,7 @@ Route::group(['middleware' => ['role:seller']], function () {
     Route::resource('panel/seller/comments',SellerComment::class);
     Route::resource('panel/seller/foodParties',FoodPartyController::class);
     Route::resource('panel/seller/restaurants',RestaurantController::class);
+    Route::resource('panel/seller/addresses',AddressController::class);
     Route::put('panel/seller/restaurants',[RestaurantController::class, 'updateStatus'])
         ->name('restaurants.updateStatus');
     Route::put('panel/seller/foods/{food}', [FoodController::class, 'assignDiscount'])->name('assign.discount');

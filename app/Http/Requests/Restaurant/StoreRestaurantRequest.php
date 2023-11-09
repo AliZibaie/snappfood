@@ -24,7 +24,6 @@ class StoreRestaurantRequest extends FormRequest
     {
         return [
             'name'=>'bail|required|unique:restaurants',
-            'address'=>'required',
             'phone'=>'bail|required|unique:restaurants',
             'account_number'=>'bail|required|unique:restaurants',
             'sending_price'=>'required',
@@ -42,7 +41,6 @@ class StoreRestaurantRequest extends FormRequest
             'name.unique' => 'این نام رستوران همراه همواره ثبت شده.',
             'phone.unique' => 'این شماره تماس رستوران همراه همواره ثبت شده.',
             'phone.required' => 'لطفا شماره تماس رستوران خود را وارد نمائید.',
-            'address.required' => 'لطفا آدرس رستوران خود را وارد نمائید.',
             'account_number.required' => 'لطفا شماره حساب خود را وارد نمائید.',
             'account_number.unique' => 'این شماره حساب همواره ثبت شده.',
             'sending_price.required' => 'لطفا هزینه ارسال سفارشات را وارد نمائید.',

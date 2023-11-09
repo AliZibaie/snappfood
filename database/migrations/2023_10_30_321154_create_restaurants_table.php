@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('restaurants', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('address');
             $table->float('score')->default(0);
             $table->string('phone');
             $table->bigInteger('account_number');
