@@ -14,7 +14,6 @@ class Address extends Model
         return $this->morphTo();
     }
     protected $visible = [
-        'id',
         'title',
         'address',
         'latitude',

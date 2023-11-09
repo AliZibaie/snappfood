@@ -18,4 +18,9 @@ class Schedule extends Model
       'open',
       'close',
     ];
+    protected $visible = [
+        'day',
+        'open',
+        'close',
+    ];
 }
