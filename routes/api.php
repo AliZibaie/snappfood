@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\api\AddressController;
 use App\Http\Controllers\api\auth\AuthController;
+use App\Http\Controllers\api\ProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,10 +19,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('addresses', AddressController::class);
-    Route::apiResource('addresses', AddressController::class);
+    Route::post('addresses/{address}', [AddressController::class, 'setAddress']);
     Route::post('logout', [AuthController::class,'logout'] );
 });
 
-Route::post('login', [AuthController::class,'login'] );
-Route::post('register', [AuthController::class,'register'] );
-
+Route::post('login', [AuthController::class,'login']);
+Route::post('register', [AuthController::class,'register']);

@@ -44,7 +44,28 @@ class AddressController extends Controller
         }
     }
 
-    public function update(Address $address)
+    public function update(UpdateAddressRequest $request, Address $address)
+    {
+        try
+        {
+            if (CheckAddress::check($address)){
+                return CheckAddress::check($address);
+            }
+            dd($request->validated());
+            Address::query()->where('id', $address->id)->update($request->input());
+            return response()->json([
+                'status'=>true,
+                'message'=>'آدرس شما با موفقیت بروزرسانی شد.',
+            ]);
+        }catch (Exception $e){
+            return response()->json([
+                'status'=>false,
+                'message'=>'خظا در آپدیت آدرس',
+            ], 500);
+        }
+    }
+
+    public function setAddress(Address $address)
     {
         try
         {
