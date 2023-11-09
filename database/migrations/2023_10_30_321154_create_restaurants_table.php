@@ -21,8 +21,6 @@ return new class extends Migration
             $table->foreignId('restaurant_category_id')->constrained();
             $table->foreignId('user_id')->constrained();
             $table->tinyInteger('status')->default(1);
-            $table->time('open_time');
-            $table->time('close_time');
             $table->timestamps();
         });
     }

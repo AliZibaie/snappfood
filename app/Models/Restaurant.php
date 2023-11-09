@@ -32,6 +32,10 @@ class Restaurant extends Model
     {
         return $this->morphOne(Address::class, 'addressable');
     }
+    public function schedules(): HasMany
+    {
+        return $this->hasMany(Schedule::class);
+    }
     protected $fillable = [
         'name',
         'phone',

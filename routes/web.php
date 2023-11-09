@@ -14,6 +14,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\Seller\FoodController;
 use App\Http\Controllers\Seller\FoodPartyController;
 use App\Http\Controllers\Seller\RestaurantController;
+use App\Http\Controllers\seller\SchduleController;
 use App\Http\Controllers\SellerController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -63,6 +64,7 @@ Route::group(['middleware' => ['role:seller']], function () {
     Route::resource('panel/seller/foodParties',FoodPartyController::class);
     Route::resource('panel/seller/restaurants',RestaurantController::class);
     Route::resource('panel/seller/addresses',AddressController::class);
+    Route::resource('panel/seller/schedules',SchduleController::class);
     Route::put('panel/seller/restaurants',[RestaurantController::class, 'updateStatus'])
         ->name('restaurants.updateStatus');
     Route::put('panel/seller/foods/{food}', [FoodController::class, 'assignDiscount'])->name('assign.discount');

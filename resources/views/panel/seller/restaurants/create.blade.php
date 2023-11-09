@@ -66,21 +66,8 @@
             <input type="number" id="sending_price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="sending_price" value="{{old('sending_price')}}">
         </div>
 
-        <div class="mb-6">
-            @error('open_time')
-            <p class="text-xl text-red-700 my-4">{{$message}}</p>
-            @enderror
-            <label for="open_time" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ساعت شروع رستوران</label>
-            <input type="time" id="open_time" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="open_time" value="{{old('open_time')}}">
-        </div>
 
-        <div class="mb-6">
-            @error('close_time')
-            <p class="text-xl text-red-700 my-4">{{$message}}</p>
-            @enderror
-            <label for="close_time" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ساعت پایان رستوران</label>
-            <input type="time" id="close_time" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="close_time" value="{{old('close_time')}}">
-        </div>
+
 
         <div class="mb-6">
             @error('image')

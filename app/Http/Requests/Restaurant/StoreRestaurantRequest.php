@@ -27,8 +27,6 @@ class StoreRestaurantRequest extends FormRequest
             'phone'=>'bail|required|unique:restaurants',
             'account_number'=>'bail|required|unique:restaurants',
             'sending_price'=>'required',
-            'open_time'=>'required',
-            'close_time'=>'required',
             'image'=>'required',
             'food_id'=>'required',
             'restaurant_category_id'=>'required',
