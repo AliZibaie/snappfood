@@ -39,4 +39,9 @@ class Restaurant
 
         return $query->get();
     }
+
+    public static function getByFood($food)
+    {
+        dd($food);
+    }
 }

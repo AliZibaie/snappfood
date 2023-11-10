@@ -15,11 +15,14 @@ class FoodResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->id,
+            'category' => [
+                $this->foodCategory->food_type,
+                'id' => $this->id,
             'title' => $this->title,
             'price' => $this->price,
             'raw_material' => $this->raw_material,
-//            'image' => $this->image,
+            ],
+            'image' => $this->image,
 //            'off' => $this->when($this->off, [
 //                'label' => $this->off->label,
 //                'factor' => $this->off->factor,

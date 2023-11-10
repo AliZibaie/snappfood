@@ -23,7 +23,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('addresses', AddressController::class);
     Route::apiResource('restaurants', RestaurantController::class);
-    Route::apiResource('carts', CartController::class);
+    Route::get('carts', [CartController::class, 'index']);
+    Route::patch('carts/{cart}', [CartController::class, 'update']);
+    Route::get('carts/{cart}', [CartController::class, 'show']);
+    Route::post('carts/add', [CartController::class, 'store']);
     Route::apiResource('restaurants/{restaurant}/foods', FoodController::class);
     Route::post('addresses/{address}', [AddressController::class, 'setAddress']);
     Route::post('logout', [AuthController::class,'logout'] );

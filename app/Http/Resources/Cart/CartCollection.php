@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Cart;
 
+use App\Http\Resources\Food\FoodResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
@@ -14,6 +15,8 @@ class CartCollection extends ResourceCollection
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'carts' => $this->collection,
+        ];
     }
 }
