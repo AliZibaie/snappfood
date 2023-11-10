@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\api\Cart\StoreFoodCartRequest;
 use App\Http\Resources\Cart\CartCollection;
+use App\Http\Resources\Cart\CartResource;
 use App\Models\Cart;
 use App\Models\Food;
 use Illuminate\Http\Request;
@@ -55,5 +56,10 @@ class CartController extends Controller
                 'message'=>'خظا در بروزرسانی سبدخرید',
             ], 500);
         }
+    }
+
+    public function show(Cart $cart)
+    {
+        return new CartResource($cart);
     }
 }
