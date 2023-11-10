@@ -19,7 +19,6 @@ class Comment
         }
 
         if ($restaurant_id && !isset($food_id)) {
-            dd($restaurant_id);
             $query->where('restaurant_id', $restaurant_id);
         }
 

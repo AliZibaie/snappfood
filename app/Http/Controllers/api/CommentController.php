@@ -31,7 +31,6 @@ class CommentController extends Controller
             ], 500);
         }
     }
-
     public function index()
     {
         return new CommentCollection(Comment::filter());

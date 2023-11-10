@@ -26,7 +26,7 @@ class AuthController extends Controller
             return response()->json([
                 'status' => false,
                 'message' => 'کاربر یافت نشد',
-            ], 401);
+            ], 404);
         }catch (\Throwable $exception){
             return response()->json([
                 'status' => false,
