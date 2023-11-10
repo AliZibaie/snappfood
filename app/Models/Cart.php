@@ -25,4 +25,9 @@ class Cart extends Model
     {
         return $this->belongsTo(Restaurant::class );
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

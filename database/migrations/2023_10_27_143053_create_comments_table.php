@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('restaurant_id')->nullable();
+            $table->foreignId('food_id')->nullable();
+            $table->foreignId('cart_id')->nullable();
+            $table->foreignId('user_id')->constrained();
+            $table->text('content');
             $table->timestamps();
         });
     }

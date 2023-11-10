@@ -3,6 +3,7 @@
 use App\Http\Controllers\api\AddressController;
 use App\Http\Controllers\api\auth\AuthController;
 use App\Http\Controllers\api\CartController;
+use App\Http\Controllers\api\CommentController;
 use App\Http\Controllers\api\FoodController;
 use App\Http\Controllers\api\PayController;
 use App\Http\Controllers\api\ProfileController;
@@ -24,6 +25,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('addresses', AddressController::class);
     Route::apiResource('restaurants', RestaurantController::class);
+    Route::apiResource('comments', CommentController::class);
     Route::get('carts', [CartController::class, 'index']);
     Route::patch('carts/{cart}', [CartController::class, 'update']);
     Route::get('carts/{cart}', [CartController::class, 'show']);
