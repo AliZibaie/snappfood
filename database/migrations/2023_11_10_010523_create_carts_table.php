@@ -16,7 +16,6 @@ return new class extends Migration
             $table->foreignId('food_id');
             $table->foreignId('restaurant_id');
             $table->integer('count');
-            $table->integer('count');
             $table->timestamps();
         });
     }

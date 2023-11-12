@@ -2,7 +2,11 @@
 
 namespace App\Http\Requests\api\auth;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rules\Password;
 
 class RegisterRequest extends FormRequest
 {
@@ -11,7 +15,7 @@ class RegisterRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return Auth::guest();
     }
 
     /**
@@ -24,7 +28,8 @@ class RegisterRequest extends FormRequest
         return [
             'name'=>'required',
             'email'=>'required|unique:users',
-            'password'=>'required|confirmed',
+            'password'=>Password::min(8)->letters()->mixedCase()->numbers()->symbols(),
+            'password_confirmation' => 'required|same:password',
         ];
     }
     public function messages(): array
@@ -36,5 +41,13 @@ class RegisterRequest extends FormRequest
             'password.required' => 'لطفا پسورد خود را وارد نمایید.',
             'password.confirmed' => 'پسورد هایی که زدی به هم نمیخورن',
         ];
+    }
+    protected function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json([
+            'success'   => false,
+            'message'   => 'خطای اعتبارسنجی',
+            'data'      => $validator->errors()
+        ]));
     }
 }
