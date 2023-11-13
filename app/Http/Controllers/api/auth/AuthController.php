@@ -25,8 +25,8 @@ class AuthController extends Controller
             }
             return response()->json([
                 'status' => false,
-                'message' => 'کاربر یافت نشد',
-            ], 404);
+                'message' => 'ایمیل یا پسورد شما اشتباه هست',
+            ], 401);
         }catch (\Throwable $exception){
             return response()->json([
                 'status' => false,

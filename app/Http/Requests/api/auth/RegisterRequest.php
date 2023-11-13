@@ -27,8 +27,8 @@ class RegisterRequest extends FormRequest
     {
         return [
             'name'=>'required',
-            'email'=>'required|unique:users',
-            'password'=>Password::min(8)->letters()->mixedCase()->numbers()->symbols(),
+            'email'=>'required|email|unique:users',
+            'password'=>["required", Password::min(8)->letters()->mixedCase()->numbers()->symbols()->uncompromised(2)],
             'password_confirmation' => 'required|same:password',
         ];
     }
@@ -36,10 +36,18 @@ class RegisterRequest extends FormRequest
     {
         return [
             'name.required' => 'لطفا نام خود را وارد نمایید.',
+            'email.email' => 'لطفا آدرس ایمیل معتبر وارد نمایید.',
             'email.unique' => 'این آدرس ایمیل قبلا ثبت شده',
             'email.required' => 'لطفا آدرس ایمیل خود را وارد نمایید.',
             'password.required' => 'لطفا پسورد خود را وارد نمایید.',
-            'password.confirmed' => 'پسورد هایی که زدی به هم نمیخورن',
+            'password.min' => 'کمترین مقدار پسورد شما 8 باید باشد',
+            'password_confirmation.required' => 'کمترین مقدار پسورد شما 8 باید باشد',
+            'password_confirmation.same' => 'کمترین مقدار پسورد شما 8 باید باشد',
+//            'password.contains:letters' => 'لطفا پسورد خود را وارد نمایید.',
+//            'password.mix' => 'لطفا پسورد خود را وارد نمایید.',
+//            'password.integer' => 'لطفا پسورد خود را وارد نمایید.',
+//            'password.symbols' => 'لطفا پسورد خود را وارد نمایید.',
+//            'password.uncompromised' => 'پسورد هایی که زدی به هم نمیخورن',
         ];
     }
     protected function failedValidation(Validator $validator)

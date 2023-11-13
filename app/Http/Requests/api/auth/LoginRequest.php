@@ -2,7 +2,10 @@
 
 namespace App\Http\Requests\api\auth;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Support\Facades\Auth;
 
 class LoginRequest extends FormRequest
 {
@@ -11,7 +14,7 @@ class LoginRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return Auth::guest();
     }
 
     /**
@@ -22,7 +25,7 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email'=>'required|exists:users',
+            'email'=>'bail|required|email|exists:users',
             'password'=>'required',
         ];
     }
@@ -30,8 +33,17 @@ class LoginRequest extends FormRequest
     {
         return [
             'email.required' => 'لطفا آدرس ایمیل خود را وارد نمایید.',
-            'email.exists' => 'خب اول ثبت نام کن بعد ورود رو بزن این چیه وارد کردی',
+            'email.email' => 'لطفا آدرس ایمیل معتبر وارد نمایید.',
+            'email.exists' => 'ایمیل یا پسورد شما اشتباه هست',
             'password.required' => 'لطفا پسورد خود را وارد نمایید.',
         ];
+    }
+    protected function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json([
+            'success'   => false,
+            'message'   => 'خطای اعتبارسنجی',
+            'data'      => $validator->errors()
+        ], 404));
     }
 }
